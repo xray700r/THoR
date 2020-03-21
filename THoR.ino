@@ -96,54 +96,29 @@ void linefollower(int leftS, int rightS)
   analogWrite(enR, 128); // Send PWM signal to L298N Enable pin
 
   setalllow();
-  wrmotor(LOW, HIGH, LOW, HIGH, LOW, HIGH, LOW, HIGH);
-
-  //both detect black line
+  // Black in the center white on both sides
+  //both detect black line STOP
   if (leftS == HIGH && rightS == HIGH)
   {
+  wrmotor(LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW);
+  }
 
-     digitalWrite(MFR1, LOW);   // turn the LED on (HIGH is the voltage level)
-     digitalWrite(MFR2, LOW);    // turn the LED off by making the voltage LOW
-     digitalWrite(MFL1, LOW);   // turn the LED on (HIGH is the voltage level)
-     digitalWrite(MFL2, LOW);    // turn the LED off by making the voltage LOW
-     delay(autogear); 
-       
-    
-    }
-
-  //both dont detect black line
+  //both dont detect black line FORWARD
   if (leftS == LOW && rightS == LOW)
   {
-   digitalWrite(MFL1, LOW);   // turn the LED on (HIGH is the voltage level)
-   digitalWrite(MFL2, HIGH);    // turn the LED off by making the voltage LOW
-   digitalWrite(MFR1, HIGH);   // turn the LED on (HIGH is the voltage level)
-   digitalWrite(MFR2,LOW );    // turn the LED off by making the voltage LOW
-     delay(autogear); 
-     
-    }
+  wrmotor(LOW, HIGH, HIGH, LOW, LOW, HIGH, HIGH, LOW);       
+  }
 
  //left detects black line => forward left slow
   if (leftS == HIGH && rightS == LOW)
   {
-     digitalWrite(MFR1,HIGH );   // turn the LED on (HIGH is the voltage level)
-     digitalWrite(MFR2, LOW );    // turn the LED off by making the voltage LOW
-     digitalWrite(MFL1, LOW);   // turn the LED on (HIGH is the voltage level)
-     digitalWrite(MFL2, LOW);    // turn the LED off by making the voltage LOW
-     delay(autogear); 
-       
-  
+  wrmotor(HIGH, LOW, LOW, LOW, HIGH, LOW, LOW, LOW);
   }
   
  //right detects black line => forward right slow
   if (leftS == LOW && rightS == HIGH)
   {
-    digitalWrite(MFL1,LOW );   // turn the LED on (HIGH is the voltage level)
-    digitalWrite(MFL2, HIGH );    // turn the LED off by making the voltage LOW
-    digitalWrite(MFR1,LOW );   // turn the LED on (HIGH is the voltage level)
-    digitalWrite(MFR2, LOW);    // turn the LED off by making the voltage LOW
-    delay(autogear); 
-      
-
+  wrmotor(LOW, HIGH, LOW, LOW, LOW, HIGH, LOW, LOW);
   }
 
    analogWrite(enL, 0); // Send PWM signal to L298N Enable pin
