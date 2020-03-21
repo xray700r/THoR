@@ -95,6 +95,9 @@ void linefollower(int leftS, int rightS)
   analogWrite(enL, 128); // Send PWM signal to L298N Enable pin
   analogWrite(enR, 128); // Send PWM signal to L298N Enable pin
 
+  setalllow();
+  wrmotor(LOW, HIGH, LOW, HIGH, LOW, HIGH, LOW, HIGH);
+
   //both detect black line
   if (leftS == HIGH && rightS == HIGH)
   {
