@@ -27,11 +27,6 @@ XBOXRECV Xbox(&Usb);
 #define MBL1 24
 #define MBL2 25
 
-#define Flipper1 A4
-#define Flipper2 A5
-#define Flipper3 A6
-#define Flipper4 A7
-
 #define sensorR 30
 #define sensorL 31
 
@@ -71,10 +66,7 @@ void setup() {
   pinMode(enL, OUTPUT);
   pinMode(enR, OUTPUT);
   
-  //servo1.attach(26);  //the pin for the servo control, and range if desired
- // servo1.write(1); //set initial servo position if desired
-  //servo2.attach(27);  //the pin for the servo control, and range if desired
- // servo2.write(1); //set initial servo position if desired
+  
   int n=0;
  
   
@@ -139,12 +131,6 @@ digitalWrite(MBR2, LOW);
 digitalWrite(MBL1, LOW);
 digitalWrite(MBL2, LOW);
           
-/*
-digitalWrite(Flipper1, LOW);   
-digitalWrite(Flipper2, LOW);  
-digitalWrite(Flipper3, LOW);   
-digitalWrite(Flipper4, LOW); 
-*/
 }
 
 
