@@ -374,10 +374,12 @@ void loop() {
         if (Xbox.getButtonClick(Y, i))
           {
             Serial.println(F("Y"));
-            
-          
+                      
           
           }
+
+        ////////// OTHER BUTTONS //////////
+
       }
     }
   }
