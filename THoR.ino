@@ -370,34 +370,18 @@ void loop() {
            }
         if (Xbox.getButtonClick(B, i))
           {Serial.println(F("B"));
-           digitalWrite(Flipper1, LOW);   // 
-            digitalWrite(Flipper2, HIGH);    // 
-     delay(200);
-            digitalWrite(Flipper1, LOW);   // 
-            digitalWrite(Flipper2, LOW);    //
           
-          //servo2.attach(27);
-          //servo2.write(180);
-          //servo2.detach();
           }
         if (Xbox.getButtonClick(X, i))
           {Serial.println(F("X"));
-          digitalWrite(Flipper3,HIGH );   // 
-            digitalWrite(Flipper4, LOW);    // 
-     delay(200);
-            digitalWrite(Flipper3, LOW);   // 
-            digitalWrite(Flipper4, LOW);    //
+          
           
           
           }
           
         if (Xbox.getButtonClick(Y, i))
           {Serial.println(F("Y"));
-            digitalWrite(Flipper3,LOW );   // 
-            digitalWrite(Flipper4, HIGH);    // 
-     delay(200);
-            digitalWrite(Flipper3, LOW);   // 
-            digitalWrite(Flipper4, LOW);    //
+            
           
           
           }
