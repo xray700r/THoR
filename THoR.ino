@@ -327,23 +327,19 @@ void loop() {
         if (Xbox.getButtonClick(L3, i))
           Serial.println(F("L3"));
         if (Xbox.getButtonClick(R3, i))
-          Serial.println(F("R3"));
+          { 
+            Serial.println(F("R3"));
+          }
 
         if (Xbox.getButtonClick(L1, i))
-          {Serial.println(F("L1"));
-           digitalWrite(Flipper3,HIGH);   // 
-            digitalWrite(Flipper4, LOW );    // 
-     delay(200);
-            digitalWrite(Flipper3, LOW);   // 
-            digitalWrite(Flipper4, LOW);    // 
+          {
+            Serial.println(F("L1"));
+           
           }
         if (Xbox.getButtonClick(R1, i))
-          {Serial.println(F("R1"));          
-           digitalWrite(Flipper1,HIGH);   // 
-            digitalWrite(Flipper2, LOW );    // 
-     delay(200);
-            digitalWrite(Flipper1, LOW);   // 
-            digitalWrite(Flipper2, LOW);    // 
+          {
+            Serial.println(F("R1"));          
+            
           }
         if (Xbox.getButtonClick(XBOX, i)) {
           Xbox.setLedMode(ROTATING, i);
@@ -357,30 +353,27 @@ void loop() {
         }
 
         if (Xbox.getButtonClick(A, i))
-          {Serial.println(F("A"));
-            digitalWrite(Flipper1,HIGH);   // 
-            digitalWrite(Flipper2, LOW );    // 
-     delay(200);
-            digitalWrite(Flipper1, LOW);   // 
-            digitalWrite(Flipper2, LOW);    // 
-           
-           //servo1.attach(26);
-          //servo1.write(180);
-          //servo1.detach();
+          {
+            Serial.println(F("A"));
+            
            }
         if (Xbox.getButtonClick(B, i))
-          {Serial.println(F("B"));
+          {
+            Serial.println(F("B"));
           
+
           }
         if (Xbox.getButtonClick(X, i))
-          {Serial.println(F("X"));
+          {
+            Serial.println(F("X"));
           
           
           
           }
           
         if (Xbox.getButtonClick(Y, i))
-          {Serial.println(F("Y"));
+          {
+            Serial.println(F("Y"));
             
           
           
