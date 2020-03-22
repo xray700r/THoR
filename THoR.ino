@@ -187,8 +187,8 @@ void loop() {
           setalllow(); // set all LOW
            
 
-          int Xget=0;
-          int Yget=0;
+          int LXget=0,LYget=0;
+          int RXget=0,RYget=0;
 
          
 
@@ -218,159 +218,86 @@ void loop() {
         
         }
 
-
         setalllow(); // set all LOW
-         
-          
+         // Left-Analog joystick    
            if (Xbox.getAnalogHat(LeftHatX, i) > Xaxisp || Xbox.getAnalogHat(LeftHatX, i) < Xaxisn)
            {
-            Xget=Xbox.getAnalogHat(LeftHatX, i);
+            LXget=Xbox.getAnalogHat(LeftHatX, i);
             }
           
            if (Xbox.getAnalogHat(LeftHatY, i) > Yaxisp || Xbox.getAnalogHat(LeftHatY, i) < Yaxisn)
            {
-            Yget=Xbox.getAnalogHat(LeftHatY, i);
+            LYget=Xbox.getAnalogHat(LeftHatY, i);
            }
-                  
-
-
-
-        if (Xbox.getAnalogHat(LeftHatX, i) > Xaxisp || Xbox.getAnalogHat(LeftHatX, i) < Xaxisn || Xbox.getAnalogHat(LeftHatY, i) > Yaxisp || Xbox.getAnalogHat(LeftHatY, i) < Yaxisn || Xbox.getAnalogHat(RightHatX, i) > Xaxisp || Xbox.getAnalogHat(RightHatX, i) < Xaxisn || Xbox.getAnalogHat(RightHatY, i) > Yaxisp || Xbox.getAnalogHat(RightHatY, i) < Yaxisn) {
+             
+         // Right-Analog joystick    
+        if (Xbox.getAnalogHat(RightHatX, i) > Xaxisp || Xbox.getAnalogHat(RightHatX, i) < Xaxisn)
+           {
+            RXget=Xbox.getAnalogHat(RightHatX, i);
+            }
+          
+           if (Xbox.getAnalogHat(RightHatY, i) > Yaxisp || Xbox.getAnalogHat(RightHatY, i) < Yaxisn)
+           {
+            RYget=Xbox.getAnalogHat(RightHatY, i);
+           }
+        
+        if (Xbox.getAnalogHat(RightHatX, i) > Xaxisp || Xbox.getAnalogHat(RightHatX, i) < Xaxisn || Xbox.getAnalogHat(LeftHatY, i) > Yaxisp || Xbox.getAnalogHat(LeftHatY, i) < Yaxisn || Xbox.getAnalogHat(RightHatX, i) > Xaxisp || Xbox.getAnalogHat(RightHatX, i) < Xaxisn || Xbox.getAnalogHat(RightHatY, i) > Yaxisp || Xbox.getAnalogHat(RightHatY, i) < Yaxisn) 
+        {
          ////////// LEFT ANALOG //////////
 
- analogWrite(enL, 255); // Send PWM signal to L298N Enable pin
-  analogWrite(enR, 255);// Send PWM signal to L298N Enable pin
+        analogWrite(enL, 255); // Send PWM signal to L298N Enable pin
+        analogWrite(enR, 255);// Send PWM signal to L298N Enable pin
          
           // FORWARD RIGHT FAST
-          if (Xget > Xaxisp && Yget ==0) {
-            Serial.print(F("LeftHatX: "));
-            Serial.print(Xget);
-            Serial.print("\t");
+          if (LXget > Xaxisp && LYget ==0) {
           wrmotor(LOW, HIGH, LOW, HIGH, LOW, HIGH, LOW, HIGH);
           }
 
            // FORWARD RIGHT SLOW 
-          if (Xget > Xaxisp && Yget > Yaxisp ) {
-            Serial.print(F("LeftHatX: "));
-            Serial.print(Xget);
-            Serial.print(Yget);
-            Serial.print("\t");
+          if (LXget > Xaxisp && LYget > Yaxisp ) {
           wrmotor(LOW, HIGH, LOW, LOW, LOW, HIGH, LOW, LOW);
           }
           
         // FORWARD LEFT SLOW
-       if (Xget < Xaxisn && Yget > Yaxisp) {
-            Serial.print(F("LeftHatX: "));
-            Serial.print(Xget);
-            Serial.print("\t");
-          wrmotor(HIGH, LOW, LOW, LOW, HIGH, LOW, LOW, LOW);
+       if (LXget < Xaxisn && LYget > Yaxisp) {
+         wrmotor(HIGH, LOW, LOW, LOW, HIGH, LOW, LOW, LOW);
           }
 
           // FORWARD LEFT FAST
-           if (Xget < Xaxisn && Yget==0 ) {
-            Serial.print(F("LeftHatX: "));
-            Serial.print(Xget);
-            Serial.print(Yget);
-            Serial.print("\t");
-            wrmotor(HIGH, LOW, HIGH, LOW, HIGH, LOW, HIGH, LOW);
+           if (LXget < Xaxisn && LYget==0 ) {
+           wrmotor(HIGH, LOW, HIGH, LOW, HIGH, LOW, HIGH, LOW);
           }
 
           // FORWARD 
-          if (Yget > Yaxisp && Xget==0 ) {
-            Serial.print(F("LeftHatY: "));
-            Serial.print(Yget);
-            Serial.print("\t");
-            //analogWrite(enL, 128); // Send PWM signal to L298N Enable pin
-  //analogWrite(enR, 128); // Send PWM signal to L298N Enable pin
+          if (LYget > Yaxisp && LXget==0 ) {
             wrmotor(LOW, HIGH, HIGH, LOW, LOW, HIGH, HIGH, LOW);       
           }
           
           // BACK 
-           if (Yget < Yaxisn  && Xget==0) {
-            Serial.print(F("LeftHatY: "));
-            Serial.print(Yget);
-            Serial.print("\t");
+           if (LYget < Yaxisn  && LXget==0) {
             wrmotor(HIGH, LOW, LOW, HIGH, HIGH, LOW, LOW, HIGH);       
           }
 
            // BACK RIGHT SLOW 
-          if (Xget > Xaxisp && Yget < Yaxisn ) {
-            Serial.print(F("LeftHatX: "));
-            Serial.print(Xget);
-            Serial.print(Yget);
-            Serial.print("\t");
-            wrmotor(LOW, LOW, LOW, HIGH, LOW, LOW, LOW, HIGH);
+          if (LXget > Xaxisp && LYget < Yaxisn ) {
+          wrmotor(LOW, LOW, LOW, HIGH, LOW, LOW, LOW, HIGH);
  
           }
           
         // BACK LEFT SLOW
-       if (Xget < Xaxisn && Yget < Yaxisn) {
-            Serial.print(F("LeftHatX: "));
-            Serial.print(Xget);
-            Serial.print("\t");
-            wrmotor(LOW, LOW, HIGH, LOW, LOW, LOW, HIGH, LOW);
+       if (LXget < Xaxisn && LYget < Yaxisn) {
+          wrmotor(LOW, LOW, HIGH, LOW, LOW, LOW, HIGH, LOW);
            }
   
           setalllow(); // set all LOW
          
 
           ////////// LEFT ANALOG //////////
-
-          ////////// RIGHT ANALOG //////////
-         //ROTATE FORWARD
-          
-         /* if (Xbox.getAnalogHat(RightHatX, i) > 7500 || Xbox.getAnalogHat(RightHatX, i) < -7500) {
-            Serial.print(F("RightHatX: "));
-            Serial.print(Xbox.getAnalogHat(RightHatX, i));
-            Serial.print("\t");
-
-             digitalWrite(Flipper1, HIGH);   // 
-            digitalWrite(Flipper2, LOW);    // 
-     
-            digitalWrite(Flipper1, LOW);   // 
-            digitalWrite(Flipper2, LOW);    // 
-           
-          }*/
-
-            if (Xbox.getAnalogHat(RightHatY, i) > 7500) {
-            Serial.print(F("RightHatY: "));
-            Serial.print(Xbox.getAnalogHat(RightHatY, i));
-
-            digitalWrite(Flipper1,HIGH);   // 
-            digitalWrite(Flipper2, LOW );    // 
-     delay(5); 
-            digitalWrite(Flipper1, LOW);   // 
-            digitalWrite(Flipper2, LOW);    // 
-          }
-
-
-          
-
-          //ROTATE BACK
-          if ( Xbox.getAnalogHat(RightHatY, i) < -7500) {
-            Serial.print(F("RightHatY: "));
-            Serial.print(Xbox.getAnalogHat(RightHatY, i));
-
-            digitalWrite(Flipper1, LOW);   // 
-            digitalWrite(Flipper2, HIGH);    // 
-     delay(5); 
-            digitalWrite(Flipper1, LOW);   // 
-            digitalWrite(Flipper2, LOW);    // 
-          }
-
-
-
-          digitalWrite(Flipper1, LOW);   // 
-          digitalWrite(Flipper2, LOW);    //
-          digitalWrite(Flipper3, LOW);   // 
-          digitalWrite(Flipper4, LOW);    //
-          ////////// RIGHT ANALOG //////////
-
-
-          
-          Serial.println();
           
         }
+
+         ////////// OTHER BUTTONS //////////
+
 
         if (Xbox.getButtonClick(UP, i)) {
           Xbox.setLedOn(LED1, i);
