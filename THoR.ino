@@ -241,7 +241,7 @@ void loop() {
             RYget=Xbox.getAnalogHat(RightHatY, i);
            }
         
-        if (Xbox.getAnalogHat(RightHatX, i) > Xaxisp || Xbox.getAnalogHat(RightHatX, i) < Xaxisn || Xbox.getAnalogHat(LeftHatY, i) > Yaxisp || Xbox.getAnalogHat(LeftHatY, i) < Yaxisn || Xbox.getAnalogHat(RightHatX, i) > Xaxisp || Xbox.getAnalogHat(RightHatX, i) < Xaxisn || Xbox.getAnalogHat(RightHatY, i) > Yaxisp || Xbox.getAnalogHat(RightHatY, i) < Yaxisn) 
+        if (Xbox.getAnalogHat(LeftHatY, i) > Yaxisp || Xbox.getAnalogHat(LeftHatY, i) < Yaxisn || Xbox.getAnalogHat(LeftHatX, i) > Xaxisp || Xbox.getAnalogHat(LeftHatX, i) < Xaxisn) 
         {
          ////////// LEFT ANALOG //////////
 
@@ -295,6 +295,61 @@ void loop() {
           ////////// LEFT ANALOG //////////
           
         }
+
+if (Xbox.getAnalogHat(RightHatX, i) > Xaxisp || Xbox.getAnalogHat(RightHatX, i) < Xaxisn || Xbox.getAnalogHat(RightHatY, i) > Yaxisp || Xbox.getAnalogHat(RightHatY, i) < Yaxisn) 
+        {
+         ////////// RIGHT ANALOG //////////
+
+        analogWrite(enL, 255); // Send PWM signal to L298N Enable pin
+        analogWrite(enR, 255);// Send PWM signal to L298N Enable pin
+         
+          // FORWARD RIGHT FAST
+          if (RXget > Xaxisp && RYget ==0) {
+          wrmotor(LOW, HIGH, LOW, HIGH, LOW, HIGH, LOW, HIGH);
+          }
+
+           // FORWARD RIGHT SLOW 
+          if (RXget > Xaxisp && RYget > Yaxisp ) {
+          wrmotor(LOW, HIGH, LOW, LOW, LOW, HIGH, LOW, LOW);
+          }
+          
+        // FORWARD LEFT SLOW
+       if (RXget < Xaxisn && RYget > Yaxisp) {
+         wrmotor(HIGH, LOW, LOW, LOW, HIGH, LOW, LOW, LOW);
+          }
+
+          // FORWARD LEFT FAST
+           if (RXget < Xaxisn && RYget==0 ) {
+           wrmotor(HIGH, LOW, HIGH, LOW, HIGH, LOW, HIGH, LOW);
+          }
+
+          // FORWARD 
+          if (RYget > Yaxisp && RXget==0 ) {
+            wrmotor(LOW, HIGH, HIGH, LOW, LOW, HIGH, HIGH, LOW);       
+          }
+          
+          // BACK 
+           if (RYget < Yaxisn  && RXget==0) {
+            wrmotor(HIGH, LOW, LOW, HIGH, HIGH, LOW, LOW, HIGH);       
+          }
+
+           // BACK RIGHT SLOW 
+          if (RXget > Xaxisp && RYget < Yaxisn ) {
+          wrmotor(LOW, LOW, LOW, HIGH, LOW, LOW, LOW, HIGH);
+ 
+          }
+          
+        // BACK LEFT SLOW
+       if (RXget < Xaxisn && RYget < Yaxisn) {
+          wrmotor(LOW, LOW, HIGH, LOW, LOW, LOW, HIGH, LOW);
+           }
+  
+          setalllow(); // set all LOW
+         
+
+          ////////// RIGHT ANALOG //////////
+}
+
 
          ////////// OTHER BUTTONS //////////
 
