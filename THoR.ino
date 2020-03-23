@@ -17,11 +17,13 @@
 USB Usb;
 XBOXRECV Xbox(&Usb);
 
+// Front motors pins 
 #define MFR1 26 //22
 #define MFR2 27 //23
 #define MFL1 28 //24
 #define MFL2 29 //25
 
+// Back motors pins 
 #define MBR1 22
 #define MBR2 23
 #define MBL1 24
@@ -38,10 +40,6 @@ XBOXRECV Xbox(&Usb);
  int Xaxisn=-9500;
  int Yaxisn=-9500;
  int autogear=5;
-
-//Servo servo1;
-//Servo servo2;
-
 
 
 void setup() {
